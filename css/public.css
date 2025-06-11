@@ -1,0 +1,251 @@
+/* Стили для публичного просмотра */
+.public-panorama-container {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.public-map-container {
+    height: 300px;
+    position: relative;
+    overflow: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.public-floor-btn {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s;
+    width: 100%;
+}
+
+/* Активная кнопка этажа (основная с градиентом) */
+.main-btn.public-floor-btn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 10px rgba(110, 142, 251, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Неактивная кнопка этажа (с контуром) */
+.main-btn.main-btn-outline.public-floor-btn {
+    background: transparent;
+    border: 2px solid #6e8efb;
+    color: #6e8efb;
+    box-shadow: none;
+    transform: none;
+}
+
+.public-floor-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+}
+
+.main-btn.main-btn-outline.public-floor-btn:hover {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-color: transparent;
+    color: white;
+}
+
+.public-room-btn {
+    margin-bottom: 5px;
+    border-radius: 8px;
+    transition: all 0.3s;
+    font-weight: 600;
+    width: 100%;
+}
+
+/* Активная кнопка комнаты (основная с градиентом) */
+.main-btn.public-room-btn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 10px rgba(110, 142, 251, 0.4);
+    transform: translateY(-2px);
+}
+
+/* Неактивная кнопка комнаты (с контуром) */
+.main-btn.main-btn-outline.public-room-btn {
+    background: transparent;
+    border: 2px solid #6e8efb;
+    color: #6e8efb;
+    box-shadow: none;
+    transform: none;
+}
+
+.public-room-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+}
+
+.main-btn.main-btn-outline.public-room-btn:hover {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-color: transparent;
+    color: white;
+}
+
+.public-map-markers {
+    position: relative;
+}
+
+.public-map-marker {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+}
+
+.public-map-marker:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    z-index: 20;
+}
+
+.public-map-marker.active {
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    color: white;
+    z-index: 15;
+    box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+}
+
+/* Стили для мини-карты */
+.mini-map {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 250px;
+    height: 180px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1005;
+    overflow: hidden;
+    pointer-events: auto;
+    transition: left 0.3s ease, transform 0.3s ease;
+}
+
+.mini-map:hover {
+    transform: scale(1.05);
+}
+
+.mini-map-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.mini-map-marker {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    border: 2px solid white;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.org-title {
+    color: #333;
+    border-bottom: 2px solid transparent;
+    border-image: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-image-slice: 1;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.loading-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для боковой панели */
+.sidebar-panel {
+    transition: transform 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-right: none;
+    width: 300px;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-panel .card {
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.sidebar-panel .card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.sidebar-panel .card-header {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    border-radius: 12px 12px 0 0;
+}
+
+.sidebar-hidden {
+    transform: translateX(-100%);
+}
+
+/* Кнопка переключения сайдбара */
+#toggle-sidebar {
+    transition: left 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+}
+
+#toggle-sidebar:hover {
+    transform: translateY(-50%) scale(1.1);
+}
+
+.sidebar-hidden + #toggle-sidebar {
+    left: 0 !important;
+}
+
+/* Убираем подчеркивание у всех ссылок внутри main-btn */
+a.main-btn, a.main-btn-outline {
+    text-decoration: none;
+} 

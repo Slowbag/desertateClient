@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр панорам организации</title>
+    <!-- Bootstrap CSS -->
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/public.css">
+</head>
+<body class="main-app">
+    <div class="main-bg"></div>
+    
+    <div class="loading-message position-fixed top-50 start-50 translate-middle" style="z-index: 9999; background: white; border-radius: 12px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); padding: 1.5rem; min-width: 220px; text-align: center;">
+        <div class="mb-3">
+            <div class="spinner-border" style="width: 3rem; height: 3rem; color: #6e8efb;" role="status">
+                <span class="visually-hidden">Загрузка...</span>
+            </div>
+        </div>
+        <p class="mb-0 fw-medium">Загрузка данных...</p>
+    </div>
+
+    <div id="public-content" class="d-none main-content">
+        <!-- Контент будет загружен динамически -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="libs/jquery/jquery.min.js"></script>
+    <!--Aframe-->
+    <script src="libs/aframe/aframe.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Только скрипт для публичного просмотра -->
+    <script src="js/public-view.js"></script>
+</body>
+</html> 

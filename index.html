@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>360° Panorama View</title>
+    <!-- Bootstrap CSS -->
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-bg"></div>
+    
+    <!-- Login Form -->
+    <div id="login-container" class="container">
+        <div class="row justify-content-center align-items-center min-vh-100">
+            <div class="col-sm-10 auth-column">
+                <div class="text-center mb-4">
+                    <i class="bi bi-buildings display-1 text-primary"></i>
+                    <h2 class="auth-logo-text">360° Просмотр</h2>
+                </div>
+                
+                <div class="auth-card">
+                    <div class="auth-card-header">
+                        <h3>Вход в систему</h3>
+                        <p class="text-muted">Введите ваши учетные данные для доступа</p>
+                    </div>
+                    
+                    <div class="auth-card-body">
+                        <form id="login-form">
+                            <div class="mb-4">
+                                <div class="auth-input-group">
+                                    <span class="auth-input-icon"><i class="bi bi-person"></i></span>
+                                    <input type="text" class="auth-input" id="identifier" name="identifier" placeholder="Логин или Email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="auth-input-group">
+                                    <span class="auth-input-icon"><i class="bi bi-lock"></i></span>
+                                    <input type="password" class="auth-input" id="password" name="password" placeholder="Пароль" required>
+                                    <button type="button" class="auth-toggle-password" id="toggle-password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div id="login-error" class="auth-error d-none" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                <span id="error-message">Неверный логин или пароль</span>
+                            </div>
+                            
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="auth-submit-btn">
+                                    <span class="auth-btn-text">Войти</span>
+                                    <i class="bi bi-arrow-right-circle ms-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4 auth-footer">
+                    <p>&copy; 2025 360° Просмотр учреждений</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (Hidden until login) -->
+    <div id="dynamic-content" class="d-none main-app">
+        <div class="main-bg"></div>
+        <!-- A-Frame сцена будет добавлена здесь через JavaScript -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="libs/jquery/jquery.min.js"></script>
+    <!--Aframe-->
+    <script src="libs/aframe/aframe.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 

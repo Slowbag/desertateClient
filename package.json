@@ -1,0 +1,21 @@
+{
+  "name": "desertate-client",
+  "version": "1.0.0",
+  "description": "360° Panorama View Client",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8080 -c-1",
+    "dev": "http-server -p 8080 -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "panorama",
+    "360",
+    "view"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+} 

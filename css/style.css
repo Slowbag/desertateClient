@@ -1,0 +1,572 @@
+html {
+    height: 100%;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-bottom: 0; /* Убираем padding-bottom */
+}
+
+/* Authentication Page Styles */
+.auth-page {
+    background-color: #f5f7fb;
+    min-height: 100vh;
+    overflow-x: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    clip-path: polygon(0 0, 60% 0, 30% 100%, 0 100%);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+/* Adjust clip path for different screen sizes to work with centered content */
+@media (min-width: 768px) {
+    .auth-bg {
+        clip-path: polygon(0 0, 50% 0, 35% 100%, 0 100%);
+    }
+}
+
+@media (min-width: 1200px) {
+    .auth-bg {
+        clip-path: polygon(0 0, 45% 0, 30% 100%, 0 100%);
+    }
+}
+
+@media (min-width: 1600px) {
+    .auth-bg {
+        clip-path: polygon(0 0, 40% 0, 25% 100%, 0 100%);
+    }
+}
+
+@media (min-width: 2000px) {
+    .auth-bg {
+        clip-path: polygon(0 0, 35% 0, 20% 100%, 0 100%);
+    }
+}
+
+.auth-logo-text {
+    font-weight: 700;
+    color: #333;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.auth-logo-img {
+    max-height: 70px;
+    margin-bottom: 1rem;
+}
+
+.auth-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.auth-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.auth-card-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-card-header h3 {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    font-size: 1.75rem;
+}
+
+.auth-input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.auth-input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    font-size: 1.2rem;
+}
+
+.auth-input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid #e1e5eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    line-height: 1.5;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #a777e3;
+    box-shadow: 0 0 0 3px rgba(167, 119, 227, 0.1);
+}
+
+.auth-toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #6c757d;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.auth-toggle-password:hover {
+    color: #a777e3;
+}
+
+.auth-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.auth-submit-btn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.auth-submit-btn:hover {
+    background: linear-gradient(135deg, #5a7bf8, #9b6bd8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+}
+
+.auth-submit-btn:active {
+    transform: translateY(0);
+}
+
+.auth-btn-text {
+    font-size: 1.1rem;
+    margin-right: 0.5rem;
+}
+
+.auth-card-body {
+    padding: 0.5rem 0;
+}
+
+.auth-footer {
+    color: #6c757d;
+    font-size: 0.9rem;
+    position: relative;
+    z-index: 1;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+main {
+    flex: 1 0 auto; /* flex-grow: 1, flex-shrink: 0, flex-basis: auto */
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #dee2e6;
+    padding: 0.75rem 0;
+    position: relative; /* Убираем fixed */
+    width: 100%;
+    flex-shrink: 0; /* Запрещаем сжиматься */
+    z-index: 10; /* Уменьшаем z-index */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: auto; /* Прижимаем к низу */
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #007bff;
+    color: white;
+}
+
+#login-container {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Center the column on all screen sizes */
+.auth-column {
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+/* Remove widescreen positioning since we want center alignment */
+@media (min-width: 1600px) {
+    #login-container {
+        margin: 0 auto;
+    }
+    
+    .auth-card {
+        background-color: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+}
+
+@media (min-width: 2000px) {
+    #login-container {
+        margin: 0 auto;
+    }
+}
+
+#dynamic-content {
+    width: 100%;
+    min-height: 70vh;
+    margin-bottom: 20px; /* Уменьшаем отступ */
+}
+
+/* Стили для контейнеров контента */
+.container-fluid {
+    padding-bottom: 20px; /* Уменьшаем отступ */
+}
+
+/* Стили для панорамы */
+#panorama-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+#simple-panorama {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+/* A-Frame сцена в контейнере */
+#simple-panorama a-scene {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+    top: 0;
+    left: 0;
+}
+
+/* Стили для маркеров комнат на карте */
+.room-map-marker {
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
+    padding: 0;
+    font-size: 0.8rem;
+}
+
+.room-map-marker:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+    z-index: 20;
+    box-shadow: 0 4px 10px rgba(110, 142, 251, 0.4);
+}
+
+.room-map-marker.active {
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    color: white;
+    z-index: 15;
+    box-shadow: 0 5px 15px rgba(255, 94, 98, 0.4);
+}
+
+/* Стили для загрузочного экрана */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(248, 249, 250, 0.5);
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Shake animation for error feedback */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.auth-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Mobile optimization */
+@media (max-width: 576px) {
+    .auth-page {
+        align-items: flex-start;
+        padding-top: 2rem;
+    }
+    
+    .auth-card {
+        padding: 1.5rem;
+    }
+    
+    .auth-input {
+        padding: 0.8rem 1rem 0.8rem 3rem;
+    }
+    
+    .auth-card-header h3 {
+        font-size: 1.5rem;
+    }
+    
+    .auth-logo-text {
+        font-size: 1.7rem;
+    }
+}
+
+/* Main App Styles - Matching Auth Design */
+.main-app {
+    background-color: #f5f7fb;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.main-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    clip-path: polygon(0 0, 30% 0, 15% 100%, 0 100%);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+}
+
+.main-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    border: none;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.main-card:hover {
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.main-card-header {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.main-card-header h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.main-card-body {
+    padding: 1.5rem;
+}
+
+.main-btn {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-btn:hover {
+    background: linear-gradient(135deg, #5a7bf8, #9b6bd8);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+    color: white;
+}
+
+.main-btn-outline {
+    background: transparent;
+    border: 2px solid #6e8efb;
+    color: #6e8efb;
+}
+
+.main-btn-outline:hover {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-color: transparent;
+    color: white;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.main-title {
+    font-weight: 700;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.main-title i {
+    margin-right: 0.75rem;
+    color: #6e8efb;
+}
+
+.main-select {
+    border-radius: 8px;
+    border: 1px solid #e1e5eb;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    margin-bottom: 1rem;
+    transition: all 0.3s;
+}
+
+.main-select:focus {
+    border-color: #a777e3;
+    box-shadow: 0 0 0 3px rgba(167, 119, 227, 0.1);
+    outline: none;
+}
+
+.main-input-group {
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.main-input {
+    border-radius: 8px;
+    border: 1px solid #e1e5eb;
+    padding: 0.6rem 1rem;
+    width: 100%;
+    transition: all 0.3s;
+}
+
+.main-input:focus {
+    border-color: #a777e3;
+    box-shadow: 0 0 0 3px rgba(167, 119, 227, 0.1);
+    outline: none;
+}
+
+.floor-btn.active, 
+.floor-btn.btn-primary {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-color: transparent;
+    color: white;
+    box-shadow: 0 4px 10px rgba(110, 142, 251, 0.3);
+}
+
+.room-btn.active {
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    border-color: transparent;
+    color: white;
+}
+
+.room-btn:hover {
+    background-color: rgba(110, 142, 251, 0.1);
+    border-color: rgba(110, 142, 251, 0.1);
+}
+
+.room-map-marker.btn-danger {
+    background: linear-gradient(135deg, #ff5e62, #ff9966);
+    border: none;
+}
+
+.panorama-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .main-card-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .main-card-body {
+        padding: 1rem;
+    }
+}
