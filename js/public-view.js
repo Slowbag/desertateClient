@@ -1,3 +1,5 @@
+const baseUrl = 'https://strapi-api.ru.tuna.am';
+
 /**
  * Публичный просмотр панорам
  */
@@ -11,6 +13,7 @@ class PublicViewApp {
         this.currentRoomIndex = 0;
         this.panoramaLoaded = false;
         this.hasAuthToken = this.checkAuthToken(); // Проверяем наличие токена авторизации
+        this.isMobile = window.innerWidth <= 768;
         
         this.init();
     }
@@ -49,7 +52,7 @@ class PublicViewApp {
     init() {
         this.publicContent = document.getElementById('public-content');
         this.loadingMessage = document.querySelector('.loading-message');
-        this.baseUrl = 'http://localhost:1337/api';
+        this.baseUrl = 'https://strapi-api.ru.tuna.am/api';
         
         this.loadData();
     }
@@ -156,7 +159,7 @@ class PublicViewApp {
                 </div>
                 
                 <!-- Боковая панель управления (поверх панорамы) -->
-                <div class="position-fixed top-0 start-0 h-100 sidebar-panel p-3" style="width: 300px; z-index: 1000; overflow-y: auto; overflow-x: visible;">
+                <div class="position-fixed top-0 start-0 h-100 sidebar-panel p-3${this.isMobile ? ' sidebar-hidden' : ''}" style="width: 300px; z-index: 1000; overflow-y: auto; overflow-x: visible;">
                     <h4 class="org-title mb-4 text-center" style="color: #333; background: linear-gradient(135deg, #6e8efb, #a777e3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; letter-spacing: 0.5px;">
                         <i class="bi bi-building me-2"></i>${org.Title}
                     </h4>
@@ -227,8 +230,8 @@ class PublicViewApp {
                 </div>
                 
                 <!-- Кнопка скрытия/открытия панели -->
-                <button id="toggle-sidebar" class="main-btn position-fixed" style="top: 50%; left: 300px; transform: translateY(-50%); z-index: 1001; border-radius: 0 4px 4px 0; height: 50px; width: 30px; padding: 0;">
-                    <i class="bi bi-chevron-left"></i>
+                <button id="toggle-sidebar" class="main-btn position-fixed" style="top: 50%; left: ${this.isMobile ? '0' : '300px'}; transform: translateY(-50%); z-index: 1001; border-radius: 0 4px 4px 0; height: 50px; width: 30px; padding: 0;">
+                    <i class="bi bi-chevron-${this.isMobile ? 'right' : 'left'}"></i>
                 </button>
             </div>
         `;
@@ -243,6 +246,34 @@ class PublicViewApp {
         
         // Добавляем обработчик для кнопки скрытия/показа панели
         this.setupSidebarToggle();
+
+        // После рендера, если мобильный — корректируем мини-карту и аудиокнопки
+        setTimeout(() => {
+            if (this.isMobile) {
+                const sidebar = document.querySelector('.sidebar-panel');
+                if (sidebar && !sidebar.classList.contains('sidebar-hidden')) {
+                    sidebar.classList.add('sidebar-hidden');
+                    sidebar.style.transform = 'translateX(-100%)';
+                }
+                const miniMap = document.querySelector('.mini-map');
+                if (miniMap) {
+                    miniMap.style.left = '20px';
+                }
+                const roomAudioBtn = document.querySelector('.audio-guide-btn');
+                if (roomAudioBtn) {
+                    roomAudioBtn.style.left = '20px';
+                }
+                const floorAudioBtn = document.querySelector('.audio-guide-floor-btn');
+                if (floorAudioBtn) {
+                    floorAudioBtn.style.left = '20px';
+                }
+                const toggleButton = document.getElementById('toggle-sidebar');
+                if (toggleButton) {
+                    toggleButton.innerHTML = '<i class="bi bi-chevron-right"></i>';
+                    toggleButton.style.left = '0';
+                }
+            }
+        }, 0);
     }
 
     /**
@@ -340,7 +371,7 @@ class PublicViewApp {
             return;
         }
         
-        const panoramaUrl = `http://localhost:1337${room.ImageRoom.url}`;
+        const panoramaUrl = `${baseUrl}${room.ImageRoom.url}`;
         
         // Показываем загрузочный индикатор
         panoramaContainer.innerHTML = `
@@ -536,7 +567,7 @@ class PublicViewApp {
                     
                     miniMap.innerHTML = `
                         <div class="mini-map-content">
-                            <img src="http://localhost:1337${floor.ImageMap.url}" class="img-fluid" alt="Мини-карта">
+                            <img src="${baseUrl}${floor.ImageMap.url}" class="img-fluid" alt="Мини-карта">
                             <div class="mini-map-marker" style="left: ${room.pointX}%; top: ${room.pointY}%;"></div>
                         </div>
                     `;
@@ -545,7 +576,7 @@ class PublicViewApp {
                 
                 // Добавляем кнопку аудио, если есть аудиофайл для комнаты
                 if (room.audioFile && room.audioFile.url) {
-                    const audioUrl = `http://localhost:1337${room.audioFile.url}`;
+                    const audioUrl = `${baseUrl}${room.audioFile.url}`;
                     
                     // Создаем аудио элемент
                     const audio = document.createElement('audio');
@@ -650,7 +681,7 @@ class PublicViewApp {
                 }
                 // Проверяем наличие аудио для этажа, если нет аудио для комнаты
                 else if (floor.audioFile && Array.isArray(floor.audioFile) && floor.audioFile.length > 0) {
-                    const floorAudioUrl = `http://localhost:1337${floor.audioFile[0].url}`;
+                    const floorAudioUrl = `${baseUrl}${floor.audioFile[0].url}`;
                     
                     // Создаем аудио элемент
                     const floorAudio = document.createElement('audio');

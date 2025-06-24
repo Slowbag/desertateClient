@@ -1,3 +1,5 @@
+const baseUrl = 'https://strapi-api.ru.tuna.am';
+
 /**
  * Main application module
  */
@@ -11,6 +13,8 @@ class App {
         
         this.init();
     }
+
+    
 
     /**
      * Initialize the application
@@ -62,7 +66,7 @@ class App {
      * @param {number} orgId - ID организации
      */
     copyPublicLink(orgId) {
-        const publicUrl = `${window.location.origin}public-view.html?userId=${this.userData.id}&orgId=${orgId}`;
+        const publicUrl = `${baseUrl}/public-view.html?userId=${this.userData.id}&orgId=${orgId}`;
         
         // Используем современный API для копирования в буфер обмена
         navigator.clipboard.writeText(publicUrl)
@@ -285,7 +289,7 @@ class App {
                             <div class="main-card-body overflow-auto" style="height: 300px;">
                                 ${floor && floor.ImageMap ? 
                                     `<div class="position-relative">
-                                        <img src="http://localhost:1337${floor.ImageMap.url}" class="img-fluid" alt="План этажа">
+                                        <img src="${baseUrl}${floor.ImageMap.url}" class="img-fluid" alt="План этажа">
                                         ${floor.Room ? floor.Room.map((room, index) => 
                                             `<button class="position-absolute room-map-marker ${index === this.currentRoomIndex ? 'active' : ''}"
                                                 style="left: ${room.pointX}%; top: ${room.pointY}%;" data-room-index="${index}">
@@ -362,7 +366,7 @@ class App {
         console.log('Данные изображения панорамы:', room.ImageRoom);
 
         // Выбираем URL для изображения панорамы
-        let panoramaUrl = `http://localhost:1337${room.ImageRoom.url}`;
+        let panoramaUrl = `${baseUrl}${room.ImageRoom.url}`;
         console.log('Loading panorama image from:', panoramaUrl);
         
         // Возвращаем упрощенный вариант панорамы
@@ -385,7 +389,7 @@ class App {
         const room = floor.Room[this.currentRoomIndex];
         if (!room.ImageRoom) return;
         
-        const panoramaUrl = `http://localhost:1337${room.ImageRoom.url}`;
+        const panoramaUrl = `${baseUrl}${room.ImageRoom.url}`;
         
         // Сначала показываем загрузочный индикатор
         panoramaContainer.innerHTML = `
@@ -524,7 +528,7 @@ class App {
             
             // Добавляем кнопку аудио, если есть аудиофайл
             if (room.audioFile && room.audioFile.url) {
-                const audioUrl = `http://localhost:1337${room.audioFile.url}`;
+                const audioUrl = `${baseUrl}${room.audioFile.url}`;
                 
                 // Создаем аудио элемент
                 const audio = document.createElement('audio');
@@ -630,7 +634,7 @@ class App {
             
             // Проверяем наличие аудио для этажа
             if (floor.audioFile && Array.isArray(floor.audioFile) && floor.audioFile.length > 0 && (!room.audioFile || !room.audioFile.url)) {
-                const floorAudioUrl = `http://localhost:1337${floor.audioFile[0].url}`;
+                const floorAudioUrl = `${baseUrl}${floor.audioFile[0].url}`;
                 
                 // Создаем аудио элемент
                 const floorAudio = document.createElement('audio');
