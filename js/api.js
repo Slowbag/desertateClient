@@ -3,7 +3,7 @@
  */
 class ApiService {
     constructor() {
-        this.baseUrl = 'http://localhost:1337/api';
+        this.baseUrl = 'https://y4xfjg-2a09-bac1-61a0-30--387-30.ru.tuna.am/api';
         this.token = localStorage.getItem('jwt');
     }
 
