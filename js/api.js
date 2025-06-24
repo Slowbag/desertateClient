@@ -3,7 +3,7 @@
  */
 class ApiService {
     constructor() {
-        this.baseUrl = 'https://y4xfjg-2a09-bac1-61a0-30--387-30.ru.tuna.am/api';
+        this.baseUrl = 'https://strapi-api.ru.tuna.am/api';
         this.token = localStorage.getItem('jwt');
     }
 
